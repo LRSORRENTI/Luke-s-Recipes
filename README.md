@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a web application designed for food enthusiasts who love to explore new recipes and dishes. Leveraging the [Edamam Recipe API][https://developer.edamam.com/edamam-recipe-api], the app allows users to browse a wide variety of foods, recipes, and culinary ideas, making it easier to discover and prepare new dishes at home.
+This is a web application designed for food enthusiasts who love to explore new recipes and dishes. Leveraging the [Edamam Recipe API](https://developer.edamam.com/edamam-recipe-api]), the app allows users to browse a wide variety of foods, recipes, and culinary ideas, making it easier to discover and prepare new dishes at home.
 
 ## Features
 
