@@ -50,7 +50,6 @@ const HomePage = () => {
       <section className="showcase-recipes">
         <div className="container">
           <Title subTitle="Some Recipes" mainTitle="Bell Peppers And Beef" />
-          {/* recipes list */}
 
           {STATUS.LOADING === recipesStatus ? (
             <Loader />

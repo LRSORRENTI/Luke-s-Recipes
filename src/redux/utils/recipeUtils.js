@@ -10,12 +10,10 @@ export const fetchRecipes = createAsyncThunk(
   "recipes/fetchRecipes",
   async (queryText = "bell peppers and beef") => {
     try {
-      // searching bell peppers and beef recipes by default
       const { data } = await fetchData(
         `?type=public&app_id=${APP_ID}&app_key=${APP_KEY}&q=${queryText}`
       );
-      let recipesData = extractRecipeData(data);
-      return recipesData;
+      return extractRecipeData(data);
     } catch (error) {
       throw Error("Failed to fetch recipes.");
     }
@@ -24,28 +22,15 @@ export const fetchRecipes = createAsyncThunk(
 
 export const fetchSearchRecipe = createAsyncThunk(
   "recipes/fetchSearchRecipes",
-  async ({ queryText, nextPageLink }) => {
-    try {
-      let recipesData = null;
-
-      if (!nextPageLink) {
-        const { data } = await fetchData(
-          `?type=public&app_id=${APP_ID}&app_key=${APP_KEY}&q=${queryText}`
-        );
-        recipesData = extractRecipeData(data);
-        recipesData;
-      } else {
-        const { data } = await fetchData(`${nextPageLink}`);
-        recipesData = extractRecipeData(data);
-      }
-
-      return recipesData;
-    } catch (error) {
-      throw Error("Failed to search recipes.");
-    }
+  async (searchQuery, thunkAPI) => {
+    const { dispatch } = thunkAPI;
+    // Fetch the recipes and ensure the result is used to fulfill the thunk.
+    return dispatch(fetchRecipes(searchQuery)).then(response => {
+      // Assuming response is structured correctly, return what is needed for further state update.
+      return response.payload;
+    });
   }
 );
-
 export const fetchSingleRecipe = createAsyncThunk(
   "recipe/fetchSingleRecipes",
   async (recipeId) => {
@@ -53,10 +38,9 @@ export const fetchSingleRecipe = createAsyncThunk(
       const { data } = await fetchData(
         `/${recipeId}?type=public&app_id=${APP_ID}&app_key=${APP_KEY}`
       );
-      let recipeData = extractSingleRecipeData(data);
-      return recipeData;
+      return extractSingleRecipeData(data);
     } catch (error) {
-      throw Error("Failed to fetch single recipe");
+      throw Error("Failed to fetch single recipe.");
     }
   }
 );

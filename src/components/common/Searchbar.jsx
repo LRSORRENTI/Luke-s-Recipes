@@ -14,14 +14,15 @@ const Searchbar = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (queryText.trim().length > 0) {
-      dispatch(fetchSearchRecipe({ queryText, nextPageLink: null }));
-      dispatch(setSearchQuery(queryText));
+      dispatch(setSearchQuery(queryText)); // Update the query first
+      dispatch(fetchSearchRecipe(queryText)); // Now fetch based on the updated query
       setQueryText("");
       navigate("/recipes/search");
     } else {
       setError("Please enter search term.");
     }
   };
+  
 
   const handleChange = (event) => {
     setQueryText(event.target.value);

@@ -25,11 +25,16 @@ const RecipeSearchPage = () => {
   const nextPageLink = useSelector(getRecipesNextPage);
 
   useEffect(() => scrollToTop(), []);
-
   useEffect(() => {
-    dispatch(fetchSearchRecipe({ queryText, nextPageLink }));
+    if (queryText && !nextPageLink) {
+      dispatch(fetchSearchRecipe(queryText));
+    }
+  }, [queryText, dispatch]); // nextPageLink removed to prevent fetching on pagination trigger initially
+  
+  // useEffect(() => {
+    // dispatch(fetchSearchRecipe({ queryText, nextPageLink }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queryText, dispatch]);
+  // }, [queryText, dispatch]);
 
   if (!searchRecipes || searchRecipes.length === 0) {
     return (
