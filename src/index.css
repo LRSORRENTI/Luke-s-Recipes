@@ -243,10 +243,10 @@ footer .navbar-brand {
   @apply inline-flex items-center justify-center;
 }
 .footer-links {
-  @apply text-white flex flex-wrap items-center justify-center my-6;
+  @apply text-white flex flex-wrap text-xs items-center justify-center my-6;
 }
 .footer-links a {
-  @apply opacity-90 font-light px-4  default-transition border-r-[1px] border-white last:border-none hover:text-red-500;
+  @apply opacity-90 font-light px-4 mt-2 default-transition border-r-[0px] border-white last:border-none hover:text-red-500;
 }
 .footer-bottom {
   @apply flex items-center justify-center text-white;
